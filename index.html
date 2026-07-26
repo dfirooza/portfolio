@@ -233,6 +233,19 @@ a{color:inherit;text-decoration:none}
   margin-top:auto;padding-top:1.1rem;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--accent);line-height:1.6;
 }
+.card-links{display:flex;gap:.5rem;margin-top:1.1rem;flex-wrap:wrap}
+.card-link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--mono);font-size:.71rem;letter-spacing:.03em;
+  border:1px solid var(--line-2);border-radius:7px;padding:.42rem .75rem;
+  color:var(--bone);transition:border-color .2s,background .2s,transform .2s;
+}
+.card-link:hover{border-color:var(--accent);background:rgba(233,169,74,.08);transform:translateY(-2px)}
+.card-link svg{width:13px;height:13px;flex:none}
+.card-link.muted{
+  color:var(--dimmer);cursor:default;border-style:dashed;
+}
+.card-link.muted:hover{border-color:var(--line-2);background:none;transform:none}
 
 /* ============ base ============ */
 .base{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(1.6rem,4vw,3rem)}
@@ -439,6 +452,12 @@ a{color:inherit;text-decoration:none}
               retrieval in Supabase.</li>
         </ul>
         <p class="badge">Falling Walls Lab SF Finalist</p>
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/dfirooza/shopsync" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.08.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            View repo
+          </a>
+        </div>
       </article>
       <article class="card rv">
         <h3>Agentic Penetration Testing Framework</h3>
@@ -452,6 +471,29 @@ a{color:inherit;text-decoration:none}
               emergency kill switch; confirmed 5 valid vulnerabilities from ~10 findings.</li>
         </ul>
         <p class="badge">5 valid vulnerabilities confirmed from ~10 findings</p>
+        <div class="card-links">
+          <span class="card-link muted">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a3 3 0 0 0-3 3v2H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-1V4a3 3 0 0 0-3-3Zm0 1.5A1.5 1.5 0 0 1 9.5 4v2h-3V4A1.5 1.5 0 0 1 8 2.5Z"/></svg>
+            Private repo — code involves a partner institution's infrastructure
+          </span>
+        </div>
+      </article>
+      <article class="card rv">
+        <h3>Goldman Sachs Mutual Fund Challenge</h3>
+        <p class="stack">Java · Spring Boot · Angular · OpenAI API</p>
+        <ul class="rb">
+          <li>Built for the Goldman Sachs Emerging Leaders 2026 challenge — a portfolio projection tool
+              combining CAPM expected-return modeling with LLM-generated allocation.</li>
+          <li>Connected the Angular frontend to the Spring Boot backend's future-value projection
+              endpoint as part of a 5-person team.</li>
+        </ul>
+        <p class="badge">Goldman Sachs Emerging Leaders 2026 · team of 5</p>
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/azrabano23/GoldmanSachsMutualFundChallenge" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.08.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            View repo (team project)
+          </a>
+        </div>
       </article>
     </div>
   </section>
@@ -473,6 +515,8 @@ a{color:inherit;text-decoration:none}
         <p><strong>Goldman Sachs</strong> Emerging Leaders Series — Software Engineering Track,
            Dec 2025 – May 2026. Built quantitative analytics infrastructure for a mutual fund
            forecasting platform.</p>
+        <p><strong>Y Combinator</strong> Startup School 2026 — hand-selected, flown to San
+           Francisco for two days among top builders worldwide.</p>
         <p class="fine">
           Ascend Berkeley (Tech Chair) · AI Entrepreneurs at Berkeley · IEEE ·
           2× SIG Discovery Day · Point72 Academy Spring Sessions
