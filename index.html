@@ -291,8 +291,8 @@ a{color:inherit;text-decoration:none}
         </h1>
         <p class="thesis">
           I build systems that <b>retrieve and reason over messy data at scale</b> — an agentic
-          RAG pipeline over a $10B ledger at Capital One, and a multi-agent security testing
-          system at Stanford GSB.
+          RAG pipeline over a $10B ledger at Capital One, with hybrid retrieval across graph
+          and vector search.
         </p>
         <div class="cta-row">
           <a class="btn solid" href="#work">See the work</a>
@@ -319,7 +319,7 @@ a{color:inherit;text-decoration:none}
       <div class="stat"><div class="num" data-count="6" data-suffix="M+">0</div><div class="lbl">Rows scanned<br>per month</div></div>
       <div class="stat"><div class="num" data-count="3" data-prefix="&lt;" data-suffix="s">0</div><div class="lbl">Query<br>latency</div></div>
       <div class="stat"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl">Daily users<br>unblocked</div></div>
-      <div class="stat"><div class="num" data-count="5" data-suffix="">0</div><div class="lbl">Vulnerabilities<br>confirmed</div></div>
+      <div class="stat"><div class="num" data-count="40" data-prefix="~" data-suffix="%">0</div><div class="lbl">Fewer redundant<br>queries</div></div>
     </div>
   </header>
 
@@ -385,23 +385,6 @@ a{color:inherit;text-decoration:none}
 
     <article class="role rv">
       <div>
-        <h3 class="org">Stanford Graduate School of Business</h3>
-        <p class="job">Software Engineer — AI Security</p>
-        <p class="when">Jan 2026 — May 2026</p>
-        <ul class="chips"><li>Multi-agent</li><li>Nmap</li><li>Nuclei</li></ul>
-      </div>
-      <ul class="rb">
-        <li>Designed a multi-agent security testing system coordinating reconnaissance, vulnerability
-            classification, and report generation with Nmap, Nuclei, and controlled human approval gates.</li>
-        <li>Confirmed 5 valid vulnerabilities out of ~10 logged findings by executing authorized security
-            testing under strict allow-list and human-approval controls with reviewed exploitation validation.</li>
-        <li>Engineered safety infrastructure — out-of-band approval gates, append-only audit logging, and
-            an emergency kill switch — governing all automated actions to prevent unreviewed behavior.</li>
-      </ul>
-    </article>
-
-    <article class="role rv">
-      <div>
         <h3 class="org">Olfera</h3>
         <p class="job">Software Engineering Intern</p>
         <p class="when">May 2025 — Aug 2025</p>
@@ -412,6 +395,21 @@ a{color:inherit;text-decoration:none}
             MySQL schemas for users, projects, experiments, and SOPs.</li>
         <li>Developed secure GraphQL/AppSync API endpoints with role-based access control (RBAC) to
             protect sensitive research data and support scalable access patterns.</li>
+      </ul>
+    </article>
+
+    <article class="role rv">
+      <div>
+        <h3 class="org">Runopt</h3>
+        <p class="job">Software Engineering Intern</p>
+        <p class="when">Jan 2025 — May 2025</p>
+        <ul class="chips"><li>PyVista</li><li>Plotly</li><li>OpenMDAO</li></ul>
+      </div>
+      <ul class="rb">
+        <li>Developed a Python 3D visualization framework with PyVista and Plotly, enabling engineers
+            to generate stormwater detention layouts in under 10 seconds per simulation.</li>
+        <li>Implemented a knapsack-based optimization pipeline across 9+ underground detention models
+            and integrated OpenMDAO, reducing cross-module runtime by ~30%.</li>
       </ul>
     </article>
   </section>
@@ -433,15 +431,17 @@ a{color:inherit;text-decoration:none}
         <p class="badge">Final partner interview, a16z Speedrun · Pitched to Xfund &amp; Dorm Room Fund</p>
       </article>
       <article class="card rv">
-        <h3>ShopSync</h3>
-        <p class="stack">Next.js · Supabase · Vercel · OpenAI API</p>
+        <h3>Agentic Penetration Testing Framework</h3>
+        <p class="stack">Python · AutoGen · PentAGI · Nmap · Nuclei</p>
         <ul class="rb">
-          <li>A full-stack LLM platform that extracts structured inventory data to power personalized
-              product matches for shoppers and listing suggestions for businesses.</li>
-          <li>Ingestion and normalization pipelines for scraped and API-fed data, with embeddings-based
-              retrieval in Supabase.</li>
+          <li>Led architecture and security-framework planning, then built an end-to-end AI-assisted
+              pentesting pipeline in weekly collaboration with a Senior InfoSec Engineer at a
+              higher-ed institution's InfoSec team.</li>
+          <li>Designed a multi-agent system coordinating reconnaissance, vulnerability classification,
+              and report generation with human-approval gates, append-only audit logging, and an
+              emergency kill switch; confirmed 5 valid vulnerabilities from ~10 findings.</li>
         </ul>
-        <p class="badge">Falling Walls Lab SF Finalist</p>
+        <p class="badge">5 valid vulnerabilities confirmed from ~10 findings</p>
       </article>
     </div>
   </section>
