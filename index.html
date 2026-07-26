@@ -77,6 +77,13 @@ a{color:inherit;text-decoration:none}
 .pip{width:6px;height:6px;border-radius:50%;background:var(--t3);box-shadow:0 0 0 0 rgba(79,192,224,.6);animation:pip 2.8s infinite;flex:none}
 @keyframes pip{70%{box-shadow:0 0 0 8px rgba(79,192,224,0)}100%{box-shadow:0 0 0 0 rgba(79,192,224,0)}}
 
+.status{
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.01em;
+  color:var(--dim);margin:0 0 2.1rem;display:flex;align-items:center;gap:.65rem;
+  opacity:0;animation:fade .8s ease .58s forwards;
+}
+.status b{color:var(--accent);font-weight:600}
+
 .name{
   font-family:var(--display);font-weight:800;
   font-size:clamp(2rem,5.2vw,4.4rem);
@@ -290,9 +297,8 @@ a{color:inherit;text-decoration:none}
           <span class="ln"><span>Firoozabadi</span></span>
         </h1>
         <p class="thesis">
-          I build systems that <b>retrieve and reason over messy data at scale</b> — an agentic
-          RAG pipeline over a $10B ledger at Capital One, with hybrid retrieval across graph
-          and vector search.
+          I build systems that <b>make sense of messy data at scale</b> — agentic pipelines,
+          hybrid retrieval, and backend infrastructure that holds up under real load.
         </p>
         <div class="cta-row">
           <a class="btn solid" href="#work">See the work</a>
@@ -313,13 +319,6 @@ a{color:inherit;text-decoration:none}
         </div>
         <div class="portrait-cap"><span>Berkeley, CA</span><span>EECS '28</span></div>
       </div>
-    </div>
-
-    <div class="stats rv">
-      <div class="stat"><div class="num" data-count="6" data-suffix="M+">0</div><div class="lbl">Rows scanned<br>per month</div></div>
-      <div class="stat"><div class="num" data-count="3" data-prefix="&lt;" data-suffix="s">0</div><div class="lbl">Query<br>latency</div></div>
-      <div class="stat"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl">Daily users<br>unblocked</div></div>
-      <div class="stat"><div class="num" data-count="40" data-prefix="~" data-suffix="%">0</div><div class="lbl">Fewer redundant<br>queries</div></div>
     </div>
   </header>
 
@@ -429,6 +428,17 @@ a{color:inherit;text-decoration:none}
               and replay live AI sessions simultaneously.</li>
         </ul>
         <p class="badge">Final partner interview, a16z Speedrun · Pitched to Xfund &amp; Dorm Room Fund</p>
+      </article>
+      <article class="card rv">
+        <h3>ShopSync</h3>
+        <p class="stack">Next.js · Supabase · Vercel · OpenAI API</p>
+        <ul class="rb">
+          <li>A full-stack LLM platform that extracts structured inventory data to power personalized
+              product matches for shoppers and listing suggestions for businesses.</li>
+          <li>Ingestion and normalization pipelines for scraped and API-fed data, with embeddings-based
+              retrieval in Supabase.</li>
+        </ul>
+        <p class="badge">Falling Walls Lab SF Finalist</p>
       </article>
       <article class="card rv">
         <h3>Agentic Penetration Testing Framework</h3>
@@ -548,7 +558,7 @@ a{color:inherit;text-decoration:none}
     };
   }
 
-  var SRC=['ledger.gl','hyperion','workday.fdm','sox.registry','fx.rates','close.log'];
+  var SRC=['source-a','source-b','source-c','source-d','source-e','source-f'];
   var list=document.getElementById('srcList');
   SRC.forEach(function(s,i){
     var d=document.createElement('div');
