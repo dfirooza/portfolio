@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daniel Firoozabadi — Software Engineer</title>
-<meta name="description" content="Daniel Firoozabadi. EECS at UC Berkeley. Scheduling and retrieval systems, agentic pipelines, LLM inference research.">
+<meta name="description" content="Daniel Firoozabadi. EECS at UC Berkeley. Retrieval systems, agentic pipelines, and backend infrastructure.">
 <meta name="theme-color" content="#0C1120">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +43,6 @@ body{
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
-.mono{font-family:var(--mono)}
 
 /* ============ nav ============ */
 .nav{
@@ -63,10 +62,10 @@ a{color:inherit;text-decoration:none}
 @media(max-width:720px){.nav-links{display:none}}
 
 /* ============ hero ============ */
-.hero{padding:clamp(3rem,10vw,7rem) 0 clamp(2rem,6vw,4rem)}
+.hero{padding:clamp(3rem,10vw,6.5rem) 0 clamp(2rem,6vw,4rem)}
 .hero-grid{
-  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);
-  gap:clamp(1.6rem,5vw,4.5rem);align-items:center;
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.78fr);
+  gap:clamp(1.6rem,5vw,4rem);align-items:center;
 }
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
 
@@ -75,22 +74,22 @@ a{color:inherit;text-decoration:none}
   text-transform:uppercase;color:var(--dimmer);margin:0 0 1.5rem;
   display:flex;align-items:center;gap:.7rem;
 }
-.pip{width:6px;height:6px;border-radius:50%;background:var(--t3);box-shadow:0 0 0 0 rgba(79,192,224,.6);animation:pip 2.8s infinite}
+.pip{width:6px;height:6px;border-radius:50%;background:var(--t3);box-shadow:0 0 0 0 rgba(79,192,224,.6);animation:pip 2.8s infinite;flex:none}
 @keyframes pip{70%{box-shadow:0 0 0 8px rgba(79,192,224,0)}100%{box-shadow:0 0 0 0 rgba(79,192,224,0)}}
 
 .name{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(2.6rem,8.2vw,5.9rem);
-  line-height:.94;letter-spacing:-.035em;margin:0 0 1.5rem;
+  font-size:clamp(2rem,5.2vw,4.4rem);
+  line-height:.98;letter-spacing:-.035em;margin:0 0 1.5rem;
 }
-.name .ln{display:block;overflow:hidden}
+.name .ln{display:block;overflow:hidden;padding-bottom:.06em}
 .name .ln > span{display:block;transform:translateY(105%);animation:rise .95s cubic-bezier(.19,1,.22,1) forwards}
 .name .ln:nth-child(2) > span{animation-delay:.1s}
 @keyframes rise{to{transform:translateY(0)}}
 
 .thesis{
-  font-size:clamp(1rem,1.65vw,1.2rem);line-height:1.62;color:var(--dim);
-  max-width:52ch;margin:0 0 2.1rem;
+  font-size:clamp(1rem,1.6vw,1.18rem);line-height:1.62;color:var(--dim);
+  max-width:54ch;margin:0 0 2.1rem;
   opacity:0;animation:fade .8s ease .5s forwards;
 }
 .thesis b{color:var(--bone);font-weight:600}
@@ -100,13 +99,13 @@ a{color:inherit;text-decoration:none}
 .btn{
   font-family:var(--mono);font-size:.76rem;letter-spacing:.05em;
   padding:.66rem 1.1rem;border:1px solid var(--line-2);border-radius:7px;
+  background:none;color:inherit;cursor:pointer;
   transition:border-color .2s,background .2s,transform .2s;
 }
 .btn:hover{border-color:var(--accent);background:rgba(233,169,74,.08);transform:translateY(-2px)}
 .btn.solid{background:var(--accent);border-color:var(--accent);color:#1A1206;font-weight:700}
 .btn.solid:hover{background:#F2B75C;transform:translateY(-2px)}
 
-/* portrait */
 .portrait-wrap{opacity:0;animation:fade 1s ease .38s forwards}
 .portrait{
   position:relative;aspect-ratio:4/5;width:100%;
@@ -156,34 +155,40 @@ a{color:inherit;text-decoration:none}
 .kicker::after{content:"";flex:1;height:1px;background:var(--line)}
 .sec-title{
   font-family:var(--display);font-weight:700;
-  font-size:clamp(1.7rem,4.2vw,2.9rem);letter-spacing:-.03em;line-height:1.08;margin:0 0 .9rem;
+  font-size:clamp(1.6rem,4vw,2.7rem);letter-spacing:-.03em;line-height:1.1;margin:0 0 .9rem;
 }
-.sec-sub{color:var(--dim);max-width:60ch;margin:0;font-size:1.02rem}
+.sec-sub{color:var(--dim);max-width:62ch;margin:0;font-size:1.02rem}
 
-/* ============ scheduler ============ */
-.sched{
-  border:1px solid var(--line);border-radius:16px;background:var(--bg-2);
-  overflow:hidden;
-}
-.sched-top{
+/* ============ retrieval panel ============ */
+.rig{border:1px solid var(--line);border-radius:16px;background:var(--bg-2);overflow:hidden}
+.rig-top{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:1rem;padding:1rem 1.25rem;border-bottom:1px solid var(--line);
 }
-.sched-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
-.sched-body{display:grid;grid-template-columns:minmax(0,1fr) 210px}
-@media(max-width:820px){.sched-body{grid-template-columns:1fr}}
-#sim{display:block;width:100%;height:290px}
-.shares{border-left:1px solid var(--line);padding:1.1rem 1.25rem}
-@media(max-width:820px){.shares{border-left:none;border-top:1px solid var(--line)}}
-.shares h4{
+.rig-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.rig-body{display:grid;grid-template-columns:minmax(0,1fr) 216px}
+@media(max-width:820px){.rig-body{grid-template-columns:1fr}}
+#rq{display:block;width:100%;height:300px}
+.side{border-left:1px solid var(--line);padding:1.1rem 1.25rem}
+@media(max-width:820px){.side{border-left:none;border-top:1px solid var(--line)}}
+.side h4{
   font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--dimmer);margin:0 0 1rem;font-weight:500;
 }
-.share{margin-bottom:.9rem}
-.share-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.7rem;color:var(--dim);margin-bottom:.35rem}
-.share-bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden}
-.share-fill{height:100%;border-radius:3px;transition:width .35s ease}
-.sched-foot{
+.src{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--mono);font-size:.71rem;color:var(--dimmer);
+  padding:.34rem 0;transition:color .25s;
+}
+.src i{width:7px;height:7px;border-radius:2px;background:var(--line-2);transition:background .25s;flex:none}
+.src.hit{color:var(--bone)}
+.src.hit i{background:var(--t3)}
+.lat{
+  margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:.71rem;color:var(--dimmer);
+}
+.lat b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--t3);letter-spacing:-.02em;margin-top:.25rem}
+.rig-foot{
   padding:.9rem 1.25rem;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:.7rem;color:var(--dimmer);line-height:1.7;
 }
@@ -196,7 +201,7 @@ a{color:inherit;text-decoration:none}
 }
 .role:last-child{border-bottom:1px solid var(--line)}
 @media(max-width:820px){.role{grid-template-columns:1fr;gap:1.2rem}}
-.org{font-family:var(--display);font-weight:700;font-size:clamp(1.22rem,2.5vw,1.55rem);letter-spacing:-.025em;line-height:1.16;margin:0 0 .35rem}
+.org{font-family:var(--display);font-weight:700;font-size:clamp(1.2rem,2.4vw,1.5rem);letter-spacing:-.025em;line-height:1.16;margin:0 0 .35rem}
 .job{color:var(--dim);margin:0 0 .8rem;font-size:.97rem}
 .when{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer);margin:0;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
 .tag-now{color:var(--t3);border:1px solid rgba(79,192,224,.35);border-radius:99px;padding:.14rem .5rem;font-size:.62rem}
@@ -222,12 +227,13 @@ a{color:inherit;text-decoration:none}
   font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--accent);line-height:1.6;
 }
 
-/* ============ base grid ============ */
+/* ============ base ============ */
 .base{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(1.6rem,4vw,3rem)}
 .base h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dimmer);margin:0 0 1.1rem;font-weight:500}
 .base p{margin:0 0 .7rem;color:var(--dim);font-size:.96rem}
 .base strong{color:var(--bone);font-weight:600}
 .deg{font-family:var(--display);font-weight:700;font-size:1.18rem;color:var(--bone);letter-spacing:-.02em;margin:0 0 .35rem}
+.fine{font-size:.88rem;color:var(--dimmer)}
 .srow{margin-bottom:.95rem}
 .srow span{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dimmer);display:block;margin-bottom:.3rem}
 .srow p{font-family:var(--mono);font-size:.75rem;line-height:1.75;color:var(--dim);margin:0}
@@ -236,7 +242,7 @@ a{color:inherit;text-decoration:none}
 .contact{border-top:1px solid var(--line);padding:clamp(3.5rem,9vw,6rem) 0 2.5rem}
 .big-mail{
   font-family:var(--display);font-weight:700;
-  font-size:clamp(1.5rem,5.5vw,3.4rem);letter-spacing:-.035em;
+  font-size:clamp(1.3rem,4.6vw,3rem);letter-spacing:-.035em;
   display:inline-block;transition:color .25s;word-break:break-word;
 }
 .big-mail:hover{color:var(--accent)}
@@ -247,7 +253,6 @@ a{color:inherit;text-decoration:none}
 }
 .foot a:hover{color:var(--bone)}
 
-/* ============ reveal ============ */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.19,1,.22,1),transform .75s cubic-bezier(.19,1,.22,1)}
 .rv.in{opacity:1;transform:none}
 
@@ -266,7 +271,7 @@ a{color:inherit;text-decoration:none}
   <div class="nav-in">
     <span class="mark">DF</span>
     <div class="nav-links">
-      <a href="#research">Research</a>
+      <a href="#system">System</a>
       <a href="#work">Work</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
@@ -276,7 +281,6 @@ a{color:inherit;text-decoration:none}
 
 <div class="wrap">
 
-  <!-- ================= HERO ================= -->
   <header class="hero">
     <div class="hero-grid">
       <div>
@@ -286,9 +290,9 @@ a{color:inherit;text-decoration:none}
           <span class="ln"><span>Firoozabadi</span></span>
         </h1>
         <p class="thesis">
-          I build systems that <b>schedule and retrieve at scale</b> — an agentic reconciliation
-          pipeline over a $10B ledger at Capital One, and scheduling for LLM inference serving
-          at Berkeley's Sky Computing Lab.
+          I build systems that <b>retrieve and reason over messy data at scale</b> — an agentic
+          RAG pipeline over a $10B ledger at Capital One, and a multi-agent security testing
+          system at Stanford GSB.
         </p>
         <div class="cta-row">
           <a class="btn solid" href="#work">See the work</a>
@@ -312,64 +316,52 @@ a{color:inherit;text-decoration:none}
     </div>
 
     <div class="stats rv">
-      <div class="stat"><div class="num" data-count="6500" data-suffix="+">0</div><div class="lbl">SOX accounts<br>reconciled</div></div>
-      <div class="stat"><div class="num" data-count="6" data-suffix="M+">0</div><div class="lbl">Fact rows<br>per month</div></div>
-      <div class="stat"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl">Analysts<br>unblocked</div></div>
+      <div class="stat"><div class="num" data-count="6" data-suffix="M+">0</div><div class="lbl">Rows scanned<br>per month</div></div>
+      <div class="stat"><div class="num" data-count="3" data-prefix="&lt;" data-suffix="s">0</div><div class="lbl">Query<br>latency</div></div>
+      <div class="stat"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl">Daily users<br>unblocked</div></div>
       <div class="stat"><div class="num" data-count="5" data-suffix="">0</div><div class="lbl">Vulnerabilities<br>confirmed</div></div>
     </div>
   </header>
 
-  <!-- ================= RESEARCH / SIGNATURE ================= -->
-  <section class="sec" id="research">
+  <!-- ============ SIGNATURE: retrieval ============ -->
+  <section class="sec" id="system">
     <div class="sec-head rv">
-      <p class="kicker">Currently researching</p>
-      <h2 class="sec-title">Scheduling for LLM inference</h2>
+      <p class="kicker">What I build</p>
+      <h2 class="sec-title">Hybrid retrieval, end to end</h2>
       <p class="sec-sub">
-        At the Sky Computing Lab I work on how inference requests get scheduled: when many
-        tenants compete for the same GPUs, who gets served next, and how do you stay fair without
-        wrecking throughput? Below is that question, running live.
+        The hard part of retrieval isn't the model — it's getting a trustworthy answer out of six
+        disagreeing systems fast enough that someone will actually use it. Graph traversal finds
+        the structural path; vector search finds the semantic one; the merge step reconciles them.
+        Here's the shape of it.
       </p>
     </div>
 
-    <div class="sched rv">
-      <div class="sched-top">
-        <span class="sched-label">Scheduler · 4 workers · fair queuing</span>
-        <button class="btn" id="burst" type="button">Send a burst of load</button>
+    <div class="rig rv">
+      <div class="rig-top">
+        <span class="rig-label">Query · 6 sources · graph + vector merge</span>
+        <button class="btn" id="fire" type="button">Run a query</button>
       </div>
-      <div class="sched-body">
-        <canvas id="sim"></canvas>
-        <div class="shares">
-          <h4>Service received</h4>
-          <div id="shareList"></div>
+      <div class="rig-body">
+        <canvas id="rq"></canvas>
+        <div class="side">
+          <h4>Sources queried</h4>
+          <div id="srcList"></div>
+          <div class="lat">Resolved in<b id="latVal">—</b></div>
         </div>
       </div>
-      <p class="sched-foot">
-        Each block is a request. The scheduler always serves the tenant that has received the least
-        service so far — so when one floods the queue, the others still get through. Add a burst and
-        watch the bars pull back level.
+      <p class="rig-foot">
+        A stylised illustration of the retrieval architecture I built at Capital One, not live
+        infrastructure. Fire a query and watch the fan-out, merge, and ranking.
       </p>
     </div>
   </section>
 
-  <!-- ================= WORK ================= -->
+  <!-- ============ WORK ============ -->
   <section class="sec" id="work">
     <div class="sec-head rv">
       <p class="kicker">Work</p>
-      <h2 class="sec-title">Four roles, two running right now</h2>
+      <h2 class="sec-title">Where I've worked</h2>
     </div>
-
-    <article class="role rv">
-      <div>
-        <h3 class="org">UC Berkeley Sky Computing Lab</h3>
-        <p class="job">Undergraduate Researcher</p>
-        <p class="when">Jul 2026 — Present <span class="tag-now">Now</span></p>
-        <ul class="chips"><li>LLM inference</li><li>Scheduling</li></ul>
-      </div>
-      <ul class="rb">
-        <li>Researching scheduling and resource allocation for LLM inference serving,
-            advised by Dev Bali.</li>
-      </ul>
-    </article>
 
     <article class="role rv">
       <div>
@@ -424,7 +416,7 @@ a{color:inherit;text-decoration:none}
     </article>
   </section>
 
-  <!-- ================= PROJECTS ================= -->
+  <!-- ============ PROJECTS ============ -->
   <section class="sec" id="projects">
     <div class="sec-head rv">
       <p class="kicker">Projects</p>
@@ -454,14 +446,14 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- ================= BASE ================= -->
+  <!-- ============ BASE ============ -->
   <section class="sec">
     <div class="base rv">
       <div>
         <h4>Education</h4>
         <p class="deg">UC Berkeley</p>
         <p>B.S. Electrical Engineering &amp; Computer Sciences · Aug 2024 – May 2028 · GPA 3.5</p>
-        <p style="font-size:.88rem;color:var(--dimmer)">
+        <p class="fine">
           Data Structures &amp; Algorithms · Computer Architecture · Optimization Models ·
           Discrete Math &amp; Probability
         </p>
@@ -471,7 +463,7 @@ a{color:inherit;text-decoration:none}
         <p><strong>Goldman Sachs</strong> Emerging Leaders Series — Software Engineering Track,
            Dec 2025 – May 2026. Built quantitative analytics infrastructure for a mutual fund
            forecasting platform.</p>
-        <p style="font-size:.88rem;color:var(--dimmer)">
+        <p class="fine">
           Ascend Berkeley (Tech Chair) · AI Entrepreneurs at Berkeley · IEEE ·
           2× SIG Discovery Day · Point72 Academy Spring Sessions
         </p>
@@ -485,7 +477,6 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- ================= CONTACT ================= -->
   <section class="contact" id="contact">
     <p class="kicker rv">Contact</p>
     <a class="big-mail rv" href="mailto:dfiroozabadi@berkeley.edu">dfiroozabadi@berkeley.edu</a>
@@ -504,222 +495,199 @@ a{color:inherit;text-decoration:none}
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- scroll reveals ---------- */
+  /* ---------- reveals ---------- */
   var rv = document.querySelectorAll('.rv');
   if(reduce){ rv.forEach(function(e){e.classList.add('in')}); }
   else{
     var io = new IntersectionObserver(function(ents){
-      ents.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
+      ents.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
     rv.forEach(function(e){io.observe(e)});
   }
 
   /* ---------- counters ---------- */
-  var nums = document.querySelectorAll('.num[data-count]');
   function runCount(el){
-    var target = parseFloat(el.dataset.count), suf = el.dataset.suffix || '';
-    if(reduce){ el.textContent = target.toLocaleString() + suf; return; }
-    var t0 = performance.now(), dur = 1500;
+    var target=parseFloat(el.dataset.count), suf=el.dataset.suffix||'', pre=el.dataset.prefix||'';
+    if(reduce){ el.innerHTML = pre+target.toLocaleString()+suf; return; }
+    var t0=performance.now(), dur=1500;
     (function step(now){
-      var p = Math.min((now-t0)/dur,1);
-      var e = 1 - Math.pow(1-p,3);
-      el.textContent = Math.round(target*e).toLocaleString() + suf;
+      var p=Math.min((now-t0)/dur,1), e=1-Math.pow(1-p,3);
+      el.innerHTML = pre + Math.round(target*e).toLocaleString() + suf;
       if(p<1) requestAnimationFrame(step);
     })(t0);
   }
   var cio = new IntersectionObserver(function(ents){
     ents.forEach(function(e){ if(e.isIntersecting){ runCount(e.target); cio.unobserve(e.target); } });
   },{threshold:.5});
-  nums.forEach(function(n){cio.observe(n)});
+  document.querySelectorAll('.num[data-count]').forEach(function(n){cio.observe(n)});
 
-  /* ---------- local time ---------- */
-  var clock = document.getElementById('clock');
+  /* ---------- clock ---------- */
+  var clock=document.getElementById('clock');
   function tick(){
     try{
-      var t = new Date().toLocaleTimeString('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'2-digit'});
-      clock.textContent = 'Berkeley, CA · ' + t;
+      var t=new Date().toLocaleTimeString('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'2-digit'});
+      clock.textContent='Berkeley, CA · '+t;
     }catch(e){}
   }
   tick(); setInterval(tick,20000);
 
-  /* ---------- fair-share scheduler sim ---------- */
-  var cv = document.getElementById('sim');
-  if(!cv) return;
-  var ctx = cv.getContext('2d');
-  var css = getComputedStyle(document.documentElement);
-  var COLORS = ['--t1','--t2','--t3','--t4'].map(function(v){return css.getPropertyValue(v).trim()});
-  var LINE = css.getPropertyValue('--line').trim();
-  var DIM  = css.getPropertyValue('--dimmer').trim();
-
-  var NAMES = ['tenant-a','tenant-b','tenant-c','burst'];
-  var tenants = [
-    {c:COLORS[0], served:0, q:[], rate:.020, on:true},
-    {c:COLORS[1], served:0, q:[], rate:.016, on:true},
-    {c:COLORS[2], served:0, q:[], rate:.013, on:true},
-    {c:COLORS[3], served:0, q:[], rate:0,    on:false}
-  ];
-  var LANES = 4;
-  var lanes = []; for(var i=0;i<LANES;i++) lanes.push(null);
+  /* ---------- retrieval visualisation ---------- */
+  var cv=document.getElementById('rq'); if(!cv) return;
+  var ctx=cv.getContext('2d');
+  var cs=getComputedStyle(document.documentElement);
+  var C=['--t1','--t2','--t3','--t4'].map(function(v){return cs.getPropertyValue(v).trim()});
+  var LINE=cs.getPropertyValue('--line').trim();
+  var LINE2=cs.getPropertyValue('--line-2').trim();
+  var DIM=cs.getPropertyValue('--dimmer').trim();
+  var BONE=cs.getPropertyValue('--bone').trim();
 
   if(!ctx.roundRect){
-    ctx.roundRect = function(x,y,w,h,r){
-      this.moveTo(x+r,y);
-      this.arcTo(x+w,y,x+w,y+h,r);
-      this.arcTo(x+w,y+h,x,y+h,r);
-      this.arcTo(x,y+h,x,y,r);
-      this.arcTo(x,y,x+w,y,r);
-      this.closePath();
-      return this;
+    ctx.roundRect=function(x,y,w,h,r){
+      this.moveTo(x+r,y);this.arcTo(x+w,y,x+w,y+h,r);this.arcTo(x+w,y+h,x,y+h,r);
+      this.arcTo(x,y+h,x,y,r);this.arcTo(x,y,x+w,y,r);this.closePath();return this;
     };
   }
 
+  var SRC=['ledger.gl','hyperion','workday.fdm','sox.registry','fx.rates','close.log'];
+  var list=document.getElementById('srcList');
+  SRC.forEach(function(s,i){
+    var d=document.createElement('div');
+    d.className='src'; d.id='src'+i;
+    d.innerHTML='<i></i><span>'+s+'</span>';
+    list.appendChild(d);
+  });
+  var latEl=document.getElementById('latVal');
+
   var W=0,H=0,dpr=1;
   function size(){
-    dpr = Math.min(window.devicePixelRatio||1, 2);
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = W*dpr; cv.height = H*dpr;
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=cv.clientWidth; H=cv.clientHeight;
+    cv.width=W*dpr; cv.height=H*dpr;
     ctx.setTransform(dpr,0,0,dpr,0,0);
   }
-  size();
-  window.addEventListener('resize', size);
+  size(); window.addEventListener('resize',size);
 
-  var QX = 74;                 // queue column x
-  function laneY(i){ var pad=26, h=(H-pad*2)/LANES; return pad + h*i + h/2; }
+  function qx(){return 54}
+  function sx(){return W*0.36}
+  function mx(){return W*0.66}
+  function rx(){return W-46}
+  function sy(i){var pad=34,h=(H-pad*2)/6;return pad+h*i+h/2}
+  function my(){return H/2}
 
-  function arrive(){
-    tenants.forEach(function(t){
-      if(!t.on) return;
-      if(Math.random() < t.rate && t.q.length < 14) t.q.push({});
-    });
-  }
-  function schedule(){
-    for(var i=0;i<LANES;i++){
-      if(lanes[i]) continue;
-      var pick=null, best=Infinity;
-      tenants.forEach(function(t,ti){
-        if(t.q.length && t.served < best){ best=t.served; pick=ti; }
-      });
-      if(pick===null) continue;
-      tenants[pick].q.shift();
-      var cost = 70 + Math.random()*70;
-      tenants[pick].served += cost;
-      lanes[i] = {t:pick, p:0, speed:1/cost};
+  var parts=[], results=[], t=0, phase='idle', pt=0, hits=[];
+
+  function fire(){
+    parts=[]; results=[]; hits=[]; pt=0; phase='out';
+    for(var i=0;i<6;i++){
+      parts.push({i:i,p:0,sp:.011+Math.random()*.007,leg:0,c:C[i%4]});
     }
+    SRC.forEach(function(_,i){document.getElementById('src'+i).classList.remove('hit')});
+    latEl.textContent='…';
   }
+
   function step(){
-    for(var i=0;i<LANES;i++){
-      var L = lanes[i]; if(!L) continue;
-      L.p += L.speed*1.7;
-      if(L.p >= 1) lanes[i] = null;
+    t++;
+    if(phase==='idle'){ if(t%320===0) fire(); return; }
+    pt++;
+    var done=0;
+    parts.forEach(function(p){
+      p.p+=p.sp;
+      if(p.p>=1){
+        if(p.leg===0){
+          p.leg=1; p.p=0; p.sp=.013+Math.random()*.008;
+          var el=document.getElementById('src'+p.i); if(el) el.classList.add('hit');
+          hits.push(p.i);
+        } else if(p.leg===1){
+          p.leg=2; p.p=1;
+          done++;
+        }
+      }
+      if(p.leg===2) done++;
+    });
+    if(done>=6 && results.length===0){
+      for(var r=0;r<4;r++) results.push({p:0,w:.45+Math.random()*.55,c:C[r%4]});
+      var ms=(1.6+Math.random()*1.2).toFixed(2);
+      latEl.textContent=ms+'s';
     }
+    results.forEach(function(r){ if(r.p<1) r.p+=.035; });
+    if(results.length && results[results.length-1].p>=1 && pt>260){ phase='idle'; t=0; }
   }
-  function decay(){
-    // slow decay keeps bars responsive to recent behaviour
-    var total = tenants.reduce(function(a,t){return a+t.served},0);
-    if(total > 9000) tenants.forEach(function(t){ t.served *= .96; });
+
+  function line(x1,y1,x2,y2,col,alpha){
+    ctx.strokeStyle=col; ctx.globalAlpha=alpha; ctx.lineWidth=1;
+    ctx.beginPath();
+    var mxp=(x1+x2)/2;
+    ctx.moveTo(x1,y1); ctx.bezierCurveTo(mxp,y1,mxp,y2,x2,y2); ctx.stroke();
+    ctx.globalAlpha=1;
+  }
+  function node(x,y,r,col,fill){
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
+    if(fill){ctx.fillStyle=col;ctx.fill()} else {ctx.strokeStyle=col;ctx.lineWidth=1;ctx.stroke()}
+  }
+  function bez(x1,y1,x2,y2,p){
+    var mxp=(x1+x2)/2, u=1-p;
+    var x=u*u*u*x1+3*u*u*p*mxp+3*u*p*p*mxp+p*p*p*x2;
+    var y=u*u*u*y1+3*u*u*p*y1+3*u*p*p*y2+p*p*p*y2;
+    return {x:x,y:y};
   }
 
   function draw(){
     ctx.clearRect(0,0,W,H);
+    ctx.font='500 9px "JetBrains Mono", monospace';
+    ctx.fillStyle=DIM;
+    ctx.fillText('QUERY',18,18);
+    ctx.fillText('SOURCES',sx()-26,18);
+    ctx.fillText('MERGE',mx()-18,18);
+    ctx.fillText('RANKED',rx()-44,18);
 
-    // lane rails
-    ctx.strokeStyle = LINE; ctx.lineWidth = 1;
-    for(var i=0;i<LANES;i++){
-      var y = laneY(i);
-      ctx.beginPath(); ctx.moveTo(QX+26,y); ctx.lineTo(W-16,y); ctx.stroke();
+    for(var i=0;i<6;i++){
+      line(qx(),my(),sx(),sy(i),LINE,.55);
+      line(sx(),sy(i),mx(),my(),LINE,.35);
     }
+    line(mx(),my(),rx()-34,my(),LINE,.5);
 
-    // queue label
-    ctx.fillStyle = DIM;
-    ctx.font = '500 9px "JetBrains Mono", monospace';
-    ctx.fillText('QUEUE', 16, 20);
-    ctx.fillText('WORKERS', QX+26, 20);
+    node(qx(),my(),8,phase==='idle'?LINE2:C[0],phase!=='idle');
+    for(var i=0;i<6;i++){
+      var on=hits.indexOf(i)>=0;
+      node(sx(),sy(i),5,on?C[2]:LINE2,on);
+    }
+    node(mx(),my(),9,results.length?C[3]:LINE2,!!results.length);
 
-    // queues (stacked dots per tenant)
-    tenants.forEach(function(t,ti){
-      var y = laneY(ti);
-      for(var k=0;k<t.q.length;k++){
-        ctx.fillStyle = t.c;
-        ctx.globalAlpha = .35 + .5*(1 - k/14);
-        var x = QX - k*7;
-        if(x < 12) break;
-        ctx.fillRect(x, y-4, 4, 8);
-      }
-      ctx.globalAlpha = 1;
+    parts.forEach(function(p){
+      var a,b;
+      if(p.leg===0){ a={x:qx(),y:my()}; b={x:sx(),y:sy(p.i)}; }
+      else if(p.leg===1){ a={x:sx(),y:sy(p.i)}; b={x:mx(),y:my()}; }
+      else return;
+      var pos=bez(a.x,a.y,b.x,b.y,Math.min(p.p,1));
+      ctx.fillStyle=p.c; ctx.globalAlpha=.95;
+      ctx.beginPath(); ctx.arc(pos.x,pos.y,3,0,Math.PI*2); ctx.fill();
+      ctx.globalAlpha=1;
     });
 
-    // in-flight blocks
-    for(var i=0;i<LANES;i++){
-      var L = lanes[i]; if(!L) continue;
-      var y = laneY(i);
-      var x0 = QX+26, x1 = W-22;
-      var x = x0 + (x1-x0)*L.p;
-      ctx.fillStyle = tenants[L.t].c;
-      ctx.globalAlpha = L.p > .88 ? (1-L.p)/.12 : 1;
-      ctx.beginPath();
-      var r=3, w=26, h=10;
-      ctx.roundRect(x-w/2, y-h/2, w, h, r);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    }
-  }
-
-  function updateShares(){
-    var total = tenants.reduce(function(a,t){return a+(t.on?t.served:0)},0) || 1;
-    tenants.forEach(function(t,i){
-      var row = document.getElementById('sh'+i); if(!row) return;
-      row.style.display = t.on ? 'block' : 'none';
-      var pct = t.on ? (t.served/total*100) : 0;
-      row.querySelector('.share-fill').style.width = pct.toFixed(1)+'%';
-      row.querySelector('.pct').textContent = Math.round(pct)+'%';
+    results.forEach(function(r,i){
+      var y=my()-28+i*18, w=(rx()-mx()-46)*r.w*r.p;
+      if(w<=0) return;
+      ctx.fillStyle=r.c; ctx.globalAlpha=.28+.6*r.p;
+      ctx.beginPath(); ctx.roundRect(mx()+34,y-4,Math.max(w,2),8,3); ctx.fill();
+      ctx.globalAlpha=1;
     });
   }
 
-  // build share rows
-  var list = document.getElementById('shareList');
-  tenants.forEach(function(t,i){
-    var d = document.createElement('div');
-    d.className = 'share'; d.id = 'sh'+i;
-    d.style.display = t.on ? 'block' : 'none';
-    d.innerHTML = '<div class="share-top"><span>'+NAMES[i]+'</span><span class="pct">0%</span></div>'+
-                  '<div class="share-bar"><i class="share-fill" style="display:block;width:0;background:'+t.c+'"></i></div>';
-    list.appendChild(d);
-  });
-
-  var running = true, frame = 0;
-  var vio = new IntersectionObserver(function(e){ running = e[0].isIntersecting; },{threshold:.05});
+  var running=true;
+  var vio=new IntersectionObserver(function(e){running=e[0].isIntersecting},{threshold:.05});
   vio.observe(cv);
 
-  function loop(){
-    if(running && !reduce){
-      arrive(); schedule(); step();
-      if(frame++ % 12 === 0){ decay(); updateShares(); }
-      draw();
-    }
-    requestAnimationFrame(loop);
-  }
-
   if(reduce){
-    // static frame: one block per lane, level bars
-    tenants.forEach(function(t,i){ t.served = 100; t.q = [{},{},{}]; });
-    for(var i=0;i<LANES;i++) lanes[i] = {t:i, p:.35+i*.12, speed:0};
-    draw(); updateShares();
+    hits=[0,1,2,3,4,5];
+    SRC.forEach(function(_,i){document.getElementById('src'+i).classList.add('hit')});
+    results=[{p:1,w:.9,c:C[0]},{p:1,w:.7,c:C[1]},{p:1,w:.55,c:C[2]},{p:1,w:.4,c:C[3]}];
+    latEl.textContent='2.41s';
+    draw();
   } else {
-    loop();
+    (function loop(){ if(running){ step(); draw(); } requestAnimationFrame(loop); })();
   }
 
-  // burst button
-  document.getElementById('burst').addEventListener('click', function(){
-    var b = tenants[3];
-    b.on = true;
-    b.served = 0;
-    for(var k=0;k<12;k++) b.q.push({});
-    b.rate = .05;
-    setTimeout(function(){ b.rate = .012; }, 4000);
-    updateShares();
-  });
+  document.getElementById('fire').addEventListener('click',function(){ if(!reduce) fire(); });
 })();
 </script>
 
