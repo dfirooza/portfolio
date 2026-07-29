@@ -296,7 +296,6 @@ a{color:inherit;text-decoration:none}
   <div class="nav-in">
     <span class="mark">DF</span>
     <div class="nav-links">
-      <a href="#system">System</a>
       <a href="#work">Work</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
@@ -314,10 +313,6 @@ a{color:inherit;text-decoration:none}
           <span class="ln"><span>Daniel</span></span>
           <span class="ln"><span>Firoozabadi</span></span>
         </h1>
-        <p class="thesis">
-          I build systems that <b>make sense of messy data at scale</b> — agentic pipelines,
-          hybrid retrieval, and backend infrastructure that holds up under real load.
-        </p>
         <div class="cta-row">
           <a class="btn solid" href="#work">See the work</a>
           <a class="btn" href="mailto:dfiroozabadi@berkeley.edu">Email</a>
@@ -341,38 +336,6 @@ a{color:inherit;text-decoration:none}
   </header>
 
   <!-- ============ SIGNATURE: retrieval ============ -->
-  <section class="sec" id="system">
-    <div class="sec-head rv">
-      <p class="kicker">What I build</p>
-      <h2 class="sec-title">Hybrid retrieval, end to end</h2>
-      <p class="sec-sub">
-        The hard part of retrieval isn't the model — it's getting a trustworthy answer out of six
-        disagreeing systems fast enough that someone will actually use it. Graph traversal finds
-        the structural path; vector search finds the semantic one; the merge step reconciles them.
-        Here's the shape of it.
-      </p>
-    </div>
-
-    <div class="rig rv">
-      <div class="rig-top">
-        <span class="rig-label">Query · 6 sources · graph + vector merge</span>
-        <button class="btn" id="fire" type="button">Run a query</button>
-      </div>
-      <div class="rig-body">
-        <canvas id="rq"></canvas>
-        <div class="side">
-          <h4>Sources queried</h4>
-          <div id="srcList"></div>
-          <div class="lat">Resolved in<b id="latVal">—</b></div>
-        </div>
-      </div>
-      <p class="rig-foot">
-        A stylised illustration of the retrieval architecture I built at Capital One, not live
-        infrastructure. Fire a query and watch the fan-out, merge, and ranking.
-      </p>
-    </div>
-  </section>
-
   <!-- ============ WORK ============ -->
   <section class="sec" id="work">
     <div class="sec-head rv">
