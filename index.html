@@ -235,10 +235,22 @@ a{color:inherit;text-decoration:none}
 }
 .card-links{display:flex;gap:.5rem;margin-top:1.1rem;flex-wrap:wrap}
 .demo-creds{
-  margin-top:.85rem;padding:.7rem .85rem;border:1px dashed var(--line-2);border-radius:8px;
-  font-family:var(--mono);font-size:.71rem;color:var(--dim);line-height:1.9;
+  margin-top:.85rem;padding:.8rem .9rem;border:1px solid var(--line);border-radius:8px;
+  background:var(--panel);font-family:var(--mono);font-size:.71rem;color:var(--dim);
 }
-.demo-creds b{color:var(--bone);font-weight:600}
+.demo-creds-head{
+  display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-bottom:.5rem;
+}
+.demo-creds-head b{color:var(--bone);font-weight:600;letter-spacing:.03em}
+.demo-copy{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.03em;
+  border:1px solid var(--line-2);border-radius:6px;padding:.28rem .55rem;
+  background:none;color:var(--dim);cursor:pointer;transition:border-color .2s,color .2s;
+}
+.demo-copy:hover{border-color:var(--accent);color:var(--accent)}
+.demo-copy.copied{border-color:var(--t3);color:var(--t3)}
+.demo-row{display:flex;justify-content:space-between;gap:.6rem;padding:.15rem 0;line-height:1.7}
+.demo-row span:first-child{color:var(--dimmer)}
 .card-link{
   display:inline-flex;align-items:center;gap:.4rem;
   font-family:var(--mono);font-size:.71rem;letter-spacing:.03em;
@@ -308,13 +320,14 @@ a{color:inherit;text-decoration:none}
   <header class="hero">
     <div class="hero-grid">
       <div>
-        <p class="tagline"><i class="pip"></i> Berkeley EECS · Open to SWE internships</p>
+        <p class="tagline"><i class="pip"></i> UC Berkeley EECS · Class of 2028</p>
         <h1 class="name">
           <span class="ln"><span>Daniel</span></span>
           <span class="ln"><span>Firoozabadi</span></span>
         </h1>
         <div class="cta-row">
-          <a class="btn solid" href="#work">See the work</a>
+          <a class="btn solid" href="resume.pdf" target="_blank" rel="noopener">View résumé</a>
+          <a class="btn" href="#work">See the work</a>
           <a class="btn" href="mailto:dfiroozabadi@berkeley.edu">Email</a>
           <a class="btn" href="https://github.com/dfirooza" target="_blank" rel="noopener">GitHub</a>
           <a class="btn" href="https://linkedin.com/in/daniel-firoozabadi" target="_blank" rel="noopener">LinkedIn</a>
@@ -340,7 +353,7 @@ a{color:inherit;text-decoration:none}
   <section class="sec" id="work">
     <div class="sec-head rv">
       <p class="kicker">Work</p>
-      <h2 class="sec-title">Where I've worked</h2>
+      <h2 class="sec-title">Experience</h2>
     </div>
 
     <article class="role rv">
@@ -351,34 +364,29 @@ a{color:inherit;text-decoration:none}
         <ul class="chips"><li>LangGraph</li><li>Chroma</li><li>PyArrow</li><li>Kubernetes</li></ul>
       </div>
       <ul class="rb">
-        <li>Cut a 4-week manual Excel reconciliation process to under 2 days by building an agentic RAG
-            system (LangGraph, Chroma, PyArrow) automating GL reconciliation between Hyperion RACR and
-            Workday FDM for a $10B-spend ledger migration.</li>
-        <li>Returned discrepancy lookups in under 3 seconds across 6,500+ SOX accounts via a hybrid
-            retrieval pipeline combining graph traversal and semantic vector search across 6 data
-            sources, using PyArrow predicate pushdown on 6M+ monthly fact rows.</li>
-        <li>Enabled 20+ Finance analysts to self-serve Balance Sheet and Income Statement reconciliation
-            without HFM/Workday expert support by deploying a containerized ReAct agent (Docker,
-            Kubernetes) with an 8-tool toolkit and Gradio interface.</li>
+        <li>Cut Excel reconciliation from 4 weeks to under 2 days by building an agentic RAG system
+            with LangGraph, Chroma, and PyArrow for a $10B-spend ledger migration.</li>
+        <li>Returned discrepancy lookups in under 3 seconds across 6,500+ SOX accounts via hybrid
+            graph and semantic retrieval over 6 data sources and 6M+ rows.</li>
+        <li>Enabled 20+ Finance analysts to self-serve reconciliation by deploying a containerized
+            ReAct agent with Docker, Kubernetes, an 8-tool toolkit, and a Gradio interface.</li>
       </ul>
     </article>
 
     <article class="role rv">
       <div>
         <h3 class="org">Stanford Graduate School of Business</h3>
-        <p class="job">Software Engineer — AI Security (via Ascend Consulting)</p>
+        <p class="job">Software Engineer — AI Security (via Ascend Berkeley)</p>
         <p class="when">Jan 2026 — May 2026</p>
         <ul class="chips"><li>Multi-agent</li><li>AutoGen</li><li>PentAGI</li><li>Nmap</li><li>Nuclei</li></ul>
       </div>
       <ul class="rb">
-        <li>Led architecture and security-framework planning, then built an end-to-end AI-assisted
-            pentesting pipeline in weekly collaboration with a Senior InfoSec Engineer at Stanford
-            GSB's InfoSec team.</li>
-        <li>Designed a multi-agent system coordinating reconnaissance, vulnerability classification,
-            and report generation with human-approval gates, append-only audit logging, and an
-            emergency kill switch.</li>
-        <li>Confirmed 5 valid vulnerabilities from ~10 findings under strict allow-list and
-            human-approval controls with reviewed exploitation validation.</li>
+        <li>Led architecture planning and built an end-to-end multi-agent penetration testing system
+            coordinating reconnaissance, vulnerability classification, validation, and report
+            generation with AutoGen, PentAGI, Nmap, and Nuclei.</li>
+        <li>Implemented human-approval gates, target allowlists, append-only audit logging, and an
+            emergency kill switch; confirmed 5 valid vulnerabilities from approximately 10 findings
+            in controlled environments.</li>
       </ul>
     </article>
 
@@ -387,13 +395,13 @@ a{color:inherit;text-decoration:none}
         <h3 class="org">Olfera</h3>
         <p class="job">Software Engineering Intern</p>
         <p class="when">May 2025 — Aug 2025</p>
-        <ul class="chips"><li>MySQL</li><li>GraphQL</li><li>AppSync</li></ul>
+        <ul class="chips"><li>AWS Amplify</li><li>MySQL</li><li>GraphQL</li></ul>
       </div>
       <ul class="rb">
-        <li>Reduced redundant queries by ~40% and improved data integrity by designing 7+ normalized
-            MySQL schemas for users, projects, experiments, and SOPs.</li>
-        <li>Developed secure GraphQL/AppSync API endpoints with role-based access control (RBAC) to
-            protect sensitive research data and support scalable access patterns.</li>
+        <li>Built and deployed backend infrastructure on AWS Amplify, integrating authentication and
+            CI/CD pipelines across development, staging, and production environments.</li>
+        <li>Designed 7+ normalized MySQL schemas and secure GraphQL/AppSync endpoints with
+            role-based access control, reducing redundant queries by approximately 40%.</li>
       </ul>
     </article>
 
@@ -402,13 +410,13 @@ a{color:inherit;text-decoration:none}
         <h3 class="org">Runopt</h3>
         <p class="job">Software Engineering Intern</p>
         <p class="when">Jan 2025 — May 2025</p>
-        <ul class="chips"><li>PyVista</li><li>Plotly</li><li>OpenMDAO</li></ul>
+        <ul class="chips"><li>PyVista</li><li>OpenMDAO</li></ul>
       </div>
       <ul class="rb">
-        <li>Developed a Python 3D visualization framework with PyVista and Plotly, enabling engineers
-            to generate stormwater detention layouts in under 10 seconds per simulation.</li>
-        <li>Implemented a knapsack-based optimization pipeline across 9+ underground detention models
-            and integrated OpenMDAO, reducing cross-module runtime by ~30%.</li>
+        <li>Developed a PyVista 3D visualization framework for civil-site design, enabling engineers
+            to simulate stormwater detention layouts in under 10 seconds per run.</li>
+        <li>Implemented a knapsack-based optimization pipeline across 9+ UGDC models and integrated
+            OpenMDAO, reducing cross-module runtime by approximately 30%.</li>
       </ul>
     </article>
 
@@ -446,10 +454,11 @@ a{color:inherit;text-decoration:none}
         <h3>Tandem</h3>
         <p class="stack">TypeScript · React · Node.js · Anthropic SDK · WebSockets</p>
         <ul class="rb">
-          <li>A real-time collaborative coding environment where multiple developers share, branch,
-              and replay live AI sessions simultaneously.</li>
+          <li>Built a real-time collaborative coding environment enabling multiple developers to
+              share, branch, and replay live AI sessions simultaneously.</li>
+          <li>Advanced to the final partner interview for a16z Speedrun after developing the
+              prototype at the Stanford x Google DeepMind Hackathon.</li>
         </ul>
-        <p class="badge">Final partner interview, a16z Speedrun · Pitched to Xfund &amp; Dorm Room Fund</p>
         <div class="card-links">
           <a class="card-link" href="https://tandem-beta-ten.vercel.app/" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1 1 15h14L8 1Z"/></svg>
@@ -461,19 +470,27 @@ a{color:inherit;text-decoration:none}
           </a>
         </div>
         <div class="demo-creds">
-          <b>Demo login</b> — tandemdemo2026@gmail.com / WelcomeTandem2026!
+          <div class="demo-creds-head">
+            <b>Demo login</b>
+            <button class="demo-copy" type="button" data-email="tandemdemo2026@gmail.com" data-pw="WelcomeTandem2026!" onclick="
+              navigator.clipboard.writeText(this.dataset.email + ' / ' + this.dataset.pw);
+              this.textContent='Copied!'; this.classList.add('copied');
+              var b=this; setTimeout(function(){ b.textContent='Copy'; b.classList.remove('copied'); }, 1800);
+            ">Copy</button>
+          </div>
+          <div class="demo-row"><span>Email</span><span>tandemdemo2026@gmail.com</span></div>
+          <div class="demo-row"><span>Password</span><span>WelcomeTandem2026!</span></div>
         </div>
       </article>
       <article class="card rv">
         <h3>ShopSync</h3>
         <p class="stack">Next.js · Supabase · Vercel · OpenAI API</p>
         <ul class="rb">
-          <li>A full-stack LLM platform that extracts structured inventory data to power personalized
-              product matches for shoppers and listing suggestions for businesses.</li>
-          <li>Ingestion and normalization pipelines for scraped and API-fed data, with embeddings-based
-              retrieval in Supabase.</li>
+          <li>Built a full-stack LLM recommendation platform that extracted and normalized inventory
+              data to generate personalized product matches and business listing suggestions.</li>
+          <li>Implemented ingestion and embeddings-based retrieval pipelines over scraped and
+              API-sourced product data in Supabase; selected as a Falling Walls Lab SF finalist.</li>
         </ul>
-        <p class="badge">Falling Walls Lab SF Finalist</p>
         <div class="card-links">
           <a class="card-link" href="https://github.com/dfirooza/shopsync" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.08.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
@@ -507,7 +524,7 @@ a{color:inherit;text-decoration:none}
       <div>
         <h4>Education</h4>
         <p class="deg">UC Berkeley</p>
-        <p>B.S. Electrical Engineering &amp; Computer Sciences · Aug 2024 – May 2028 · GPA 3.5</p>
+        <p>B.S. Electrical Engineering &amp; Computer Sciences · Expected May 2028 · GPA 3.5/4.0</p>
         <p class="fine">
           Data Structures &amp; Algorithms · Computer Architecture · Optimization Models ·
           Discrete Math &amp; Probability
@@ -518,18 +535,16 @@ a{color:inherit;text-decoration:none}
         <p><strong>Goldman Sachs</strong> Emerging Leaders Series — Software Engineering Track,
            Dec 2025 – May 2026. Built quantitative analytics infrastructure for a mutual fund
            forecasting platform.</p>
-        <p><strong>Y Combinator</strong> Startup School 2026 — selected via invite-only process
-           among applicants worldwide.</p>
         <p class="fine">
           Ascend Berkeley (Tech Chair) · AI Entrepreneurs at Berkeley · IEEE ·
-          2× SIG Discovery Day · Point72 Academy Spring Sessions
+          YC Startup School 2026 · 2× SIG Discovery Day · Point72 Academy Spring Sessions
         </p>
       </div>
       <div>
         <h4>Stack</h4>
-        <div class="srow"><span>Languages</span><p>Python, Java, C/C++, SQL, JavaScript, TypeScript</p></div>
-        <div class="srow"><span>Frameworks &amp; ML</span><p>PyTorch, TensorFlow, NumPy, Pandas, React, Node.js, LangChain, AutoGen</p></div>
-        <div class="srow"><span>Tools</span><p>AWS, Docker, Kubernetes, Git, MySQL, Vercel, Supabase, CI/CD, REST APIs, Terraform</p></div>
+        <div class="srow"><span>Languages</span><p>Python, Java, C, C++, SQL, JavaScript, TypeScript</p></div>
+        <div class="srow"><span>Frameworks &amp; ML</span><p>PyTorch, TensorFlow, NumPy, Pandas, React, Node.js, LangGraph, LangChain, AutoGen</p></div>
+        <div class="srow"><span>Tools</span><p>Linux/Unix, AWS (Amplify, DynamoDB), Docker, Kubernetes, Git, MySQL, PostgreSQL, Supabase, CI/CD, REST APIs, GraphQL, Terraform</p></div>
       </div>
     </div>
   </section>
